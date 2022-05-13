@@ -16,6 +16,7 @@
 package com.example.thorbenexpertsession;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceCreator;
 
 import java.util.Objects;
 
@@ -24,6 +25,20 @@ class Minion {
 	@Id
 	Long id;
 	String name;
+
+	@PersistenceCreator
+	Minion(Long id, String name) {
+
+		System.out.println("Yes Spring Data JDBC uses this constructor!");
+
+		this.id = id;
+		this.name = name;
+	}
+
+	Minion(String name) {
+		this.id = id;
+		this.name = name;
+	}
 
 	@Override
 	public boolean equals(Object o) {

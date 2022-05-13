@@ -15,8 +15,7 @@ class ThorbenExpertSessionApplicationTests {
 	@Test
 	void playWithMinion() {
 
-		Minion minion = new Minion();
-		minion.name = "Kevin";
+		Minion minion = new Minion("Kevin");
 
 		Minion saved = minions.save(minion);
 

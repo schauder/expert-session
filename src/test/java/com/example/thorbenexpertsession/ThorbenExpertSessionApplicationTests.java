@@ -16,6 +16,9 @@ class ThorbenExpertSessionApplicationTests {
 	void playWithMinion() {
 
 		Minion minion = new Minion("Kevin");
+		minion.add("Blue Light");
+		minion.add("Trumpet");
+		minion.add("Axe");
 
 		Minion saved = minions.save(minion);
 
@@ -24,6 +27,8 @@ class ThorbenExpertSessionApplicationTests {
 		assertThat(saved).isSameAs(minion);
 
 		Minion reloaded = minions.findById(saved.id).orElseThrow();
+
+		System.out.println(reloaded);
 
 		assertThat(saved).isEqualTo(reloaded);
 		assertThat(saved).isNotSameAs(reloaded);

@@ -15,62 +15,32 @@
  */
 package com.example.thorbenexpertsession;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceCreator;
-
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
-import java.util.function.Consumer;
 
-class Minion {
+class Gadget {
+	String description;
 
-	@Id
-	Long id;
-	String name;
-	private Set<Gadget> gadgets = new HashSet<>();
-
-
-	@PersistenceCreator
-	Minion(Long id, String name) {
-
-		this.id = id;
-		this.name = name;
-	}
-
-	Minion(String name) {
-		this.id = id;
-		this.name = name;
+	Gadget(String description) {
+		this.description = description;
 	}
 
 	@Override
 	public boolean equals(Object o) {
-
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Minion minion = (Minion) o;
-		return Objects.equals(id, minion.id) && Objects.equals(name, minion.name);
+		Gadget gadget = (Gadget) o;
+		return Objects.equals(description, gadget.description);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name);
+		return Objects.hash(description);
 	}
 
 	@Override
 	public String toString() {
-		return "Minion{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", gadgets=" + gadgets +
+		return "Gadget{" +
+				"description='" + description + '\'' +
 				'}';
-	}
-
-	void add(String gadget) {
-		gadgets.add(new Gadget(gadget));
-	}
-
-	void forEachGadget(Consumer<Gadget> consumer) {
-		gadgets.forEach(consumer);
 	}
 }

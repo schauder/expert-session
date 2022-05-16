@@ -17,6 +17,7 @@ package com.example.thorbenexpertsession;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceCreator;
+import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -29,6 +30,7 @@ class Minion {
 	Long id;
 	String name;
 	private Set<Gadget> gadgets = new HashSet<>();
+	AggregateReference<Person, Long> master;
 
 
 	@PersistenceCreator
@@ -41,6 +43,10 @@ class Minion {
 	Minion(String name) {
 		this.id = id;
 		this.name = name;
+	}
+
+	void setMaster(Person master) {
+		this.master = AggregateReference.to(master.id());
 	}
 
 	@Override
@@ -63,6 +69,7 @@ class Minion {
 				"id=" + id +
 				", name='" + name + '\'' +
 				", gadgets=" + gadgets +
+				", master=" + master + '\'' +
 				'}';
 	}
 

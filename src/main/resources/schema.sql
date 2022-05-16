@@ -1,7 +1,15 @@
-create table minion
+create table person
 (
     id identity not null primary key,
     name varchar(500)
+);
+
+
+create table minion
+(
+    id identity not null primary key,
+    name varchar(500),
+    master bigint references person(id)
 );
 
 create table gadget

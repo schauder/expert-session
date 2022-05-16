@@ -15,7 +15,15 @@
  */
 package com.example.thorbenexpertsession;
 
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 public interface Persons extends CrudRepository<Person, Long> {
+	@Query("""
+		select id, name from person where exists (select 1 from minion where master = person.id)
+""")
+	List<Person> findAllMasters();
+
 }

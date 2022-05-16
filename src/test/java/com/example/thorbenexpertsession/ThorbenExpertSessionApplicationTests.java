@@ -56,4 +56,14 @@ class ThorbenExpertSessionApplicationTests {
 		assertThat(minions.findAll()).isEmpty();
 
 	}
+
+	@Test
+	void playWithPersons() {
+
+		List<Person> masters = persons.findAllMasters();
+
+		assertThat(masters).extracting(Person::name).containsExactly("Gru");
+
+	}
+
 }

@@ -22,26 +22,27 @@ import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 public class Minion {
 
 	@Id
-	Long id;
+	UUID id;
 	String name;
 	private Set<Gadget> gadgets = new HashSet<>();
 	AggregateReference<Person, Long> master;
 
 
 	@PersistenceCreator
-	Minion(Long id, String name) {
+	Minion(UUID id, String name) {
 
 		this.id = id;
 		this.name = name;
 	}
 
 	Minion(String name) {
-		this.id = id;
+		this.id = null;
 		this.name = name;
 	}
 

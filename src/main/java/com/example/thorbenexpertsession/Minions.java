@@ -18,7 +18,9 @@ package com.example.thorbenexpertsession;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.data.repository.CrudRepository;
 
-public interface Minions extends CrudRepository<Minion, Long> {
+import java.util.UUID;
+
+public interface Minions extends CrudRepository<Minion, UUID> {
 	Minion findByMaster(Person master);
 	Minion findByMaster(AggregateReference<Person, Long> master);
 }

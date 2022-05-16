@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
 import java.util.List;
 
@@ -54,6 +55,19 @@ class ThorbenExpertSessionApplicationTests {
 		minions.deleteById(kevin.id);
 
 		assertThat(minions.findAll()).isEmpty();
+	}
+
+	@Test
+	void derivedQueries() {
+
+
+		Minion kevin = minions.findByMaster(gru);
+
+		assertThat(kevin.name).isEqualTo("Kevin");
+
+		Minion kevinAgain = minions.findByMaster(AggregateReference.to(gru.id()));
+
+		assertThat(kevinAgain.name).isEqualTo("Kevin");
 
 	}
 

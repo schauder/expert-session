@@ -15,7 +15,10 @@
  */
 package com.example.thorbenexpertsession;
 
+import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.data.repository.CrudRepository;
 
 public interface Minions extends CrudRepository<Minion, Long> {
+	Minion findByMaster(Person master);
+	Minion findByMaster(AggregateReference<Person, Long> master);
 }

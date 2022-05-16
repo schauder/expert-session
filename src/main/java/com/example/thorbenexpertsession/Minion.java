@@ -24,7 +24,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 
-class Minion {
+public class Minion {
 
 	@Id
 	Long id;
